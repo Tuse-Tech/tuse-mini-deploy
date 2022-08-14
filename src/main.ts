@@ -4,7 +4,7 @@
 import args from 'args';
 import AdmZip from 'adm-zip'
 import fs from 'fs';
-import FormData from "form-data";
+
 import {Axios} from 'axios';
 args
   .option('key', 'API key')

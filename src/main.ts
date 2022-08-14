@@ -3,9 +3,9 @@
 
 import args from 'args';
 import AdmZip from 'adm-zip'
-import fs from 'fs';
-
-import {Axios} from 'axios';
+import FormData from 'form-data';
+import {Blob} from 'buffer';
+import {XMLHttpRequest} from 'xmlhttprequest';
 args
   .option('key', 'API key')
   .option('name', 'name of the miniapp','Tuse test')
@@ -17,19 +17,9 @@ var folder = process.cwd();
 
 var zip  = new AdmZip()
 zip.addLocalFolder(folder);
-var bodyFormData = new FormData();
-bodyFormData.append('image', zip.toBuffer()); 
-new Axios().request({
-    method: "post",
-    url: "http://tuse.tech:9001/api/miniapps",
-    data: bodyFormData,
-    headers: { "Content-Type": "multipart/form-data" },
-  })
-    .then(function (response) {
-      //handle success
-      console.log(response);
-    })
-    .catch(function (response) {
-      //handle error
-      console.log(response);
-    });
+var data = new FormData();
+data.append('file', new Blob([zip.toBuffer()], { type: 'application/zip' }));
+// this works
+let request = new XMLHttpRequest();
+request.open('POST', "http://tuse.tech:9001/api/miniapps");
+request.send(data);

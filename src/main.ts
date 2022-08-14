@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-console.log("whoa")
+console.log(__dirname);

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-console.log(__dirname);
+console.log(process.cwd());
 //# sourceMappingURL=main.js.map

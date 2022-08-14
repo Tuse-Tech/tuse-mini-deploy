@@ -14,7 +14,7 @@ var folder = process.cwd();
 var zip = new adm_zip_1.default();
 zip.addLocalFolder(folder);
 var bodyFormData = new form_data_1.default();
-bodyFormData.append('image', zip);
+bodyFormData.append('image', zip.toBuffer());
 new axios_1.Axios().request({
     method: "post",
     url: "http://tuse.tech:9001/api/miniapps",

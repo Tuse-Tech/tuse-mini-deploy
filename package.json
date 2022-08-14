@@ -32,7 +32,7 @@
     "build:watch": "tsc -w -p tsconfig.json",
     "build:release": "npm run clean && tsc -p tsconfig.release.json",
     "lint": "eslint . --ext .ts --ext .mts",
-    "test": "jest --coverage",
+    "deploy": "git add . && git commit -m 'depl' && git push origin master",
     "prettier": "prettier --config .prettierrc --write .",
     "test:watch": "jest --watch"
   },

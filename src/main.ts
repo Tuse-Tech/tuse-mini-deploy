@@ -3,9 +3,6 @@
 
 import args from 'args';
 import AdmZip from 'adm-zip'
-import FormData from 'form-data';
-import {Blob} from 'buffer';
-import {XMLHttpRequest} from 'xmlhttprequest';
 args
   .option('key', 'API key')
   .option('name', 'name of the miniapp','Tuse test')
@@ -17,9 +14,15 @@ var folder = process.cwd();
 
 var zip  = new AdmZip()
 zip.addLocalFolder(folder);
-var data = new FormData();
-data.append('file', new Blob([zip.toBuffer()], { type: 'application/zip' }));
-// this works
-let request = new XMLHttpRequest();
-request.open('POST', "http://tuse.tech:9001/api/miniapps");
-request.send(data);
+const FormData = require('form-data');
+const fetch = require('node-fetch');
+
+function uploadImage(imageBuffer) {
+  const form = new FormData();
+  form.append('file', imageBuffer, {
+    contentType: 'application/zip',
+  });
+  return fetch(`http://tuse.tech:9001/api/miniapps`, { method: 'POST', body: form })
+};
+
+uploadImage(zip.toBuffer())

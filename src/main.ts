@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-
-console.log(process.cwd());
+var args = process.argv;
+console.log(args);

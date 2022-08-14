@@ -22,6 +22,7 @@
     "tuse-deploy": "build/src/main.js"
   },
   "dependencies": {
+    "adm-zip": "^0.5.9",
     "args": "^5.0.3",
     "tslib": "~2.4"
   },
